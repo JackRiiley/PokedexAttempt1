@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from pokemon_logic import PokemonService
 
 #Setting up the FastAPI object
 app = FastAPI()
@@ -11,14 +12,11 @@ def home():
 #Creating an API endpoint for all pokemon
 @app.get("/pokemon")
 def GetAllPokemon():
-    #TO-DO: implement this 
-    return
+    pokemonService = PokemonService()
+    return pokemonService.GetAllPokemon()
 
 #Creating an API endpoint for searching for a pokemon
 @app.get("/pokemon/{pokemon_name}")
 def GetPokemonByName(pokemon_name: str):
-    for pokemon in PokemonList:
-        if pokemon["name"].__contains__(pokemon_name.lower()):
-            return pokemon
-        
-    return {"message": "Pokemon not found"}
+    pokemonService = PokemonService()
+    return pokemonService.GetPokemonByName(pokemon_name)
