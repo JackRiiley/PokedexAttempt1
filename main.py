@@ -17,4 +17,8 @@ def GetAllPokemon():
 #Creating an API endpoint for searching for a pokemon
 @app.get("/pokemon/{pokemon_name}")
 def GetPokemonByName(pokemon_name: str):
-    return
+    for pokemon in PokemonList:
+        if pokemon["name"].__contains__(pokemon_name.lower()):
+            return pokemon
+        
+    return {"message": "Pokemon not found"}
