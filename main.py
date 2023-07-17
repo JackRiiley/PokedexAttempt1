@@ -11,5 +11,10 @@ def home():
 #Creating an API endpoint for all pokemon
 @app.get("/pokemon")
 def GetAllPokemon():
-    #TO-DO: implement this
+    #TO-DO: implement this 
+    return
+
+#Creating an API endpoint for searching for a pokemon
+@app.get("/pokemon/{pokemon_name}")
+def GetPokemonByName(pokemon_name: str):
     return
