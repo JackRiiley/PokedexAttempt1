@@ -1,0 +1,25 @@
+tables
+- pokemon
+- stats
+
+pokemon
+ID - number
+Name - string
+type 1 - string
+type 2 - string
+
+stats
+ID - number
+Total - number
+HP - number
+Atk - number
+Def - number
+Sp. Atk - number
+Sp. Def - number
+Speed - number
+Generation - number
+IsLengardary - bool
+
+pokemon_stats
+pokemon_id - foreign key
+stats_id - foreign key
