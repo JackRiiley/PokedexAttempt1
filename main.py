@@ -1,5 +1,10 @@
 from fastapi import FastAPI
 from pokemon_logic import PokemonService
+from database_configs.connection import engine, Base
+from database_configs import models
+
+Base.metadata.create_all(bind=engine)
+
 
 #Setting up the FastAPI object
 app = FastAPI()
