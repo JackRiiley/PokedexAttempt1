@@ -1,6 +1,6 @@
 import csv
 from sqlalchemy.orm import Session
-from models import Pokemon
+from database_configs.models import Pokemon
 
 def parse_data(db: Session):
     csv_file = "/Pokemon.csv"
