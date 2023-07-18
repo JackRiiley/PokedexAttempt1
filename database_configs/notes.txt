@@ -7,6 +7,8 @@ ID - number
 Name - string
 type 1 - string
 type 2 - string
+Generation - number
+IsLengardary - bool
 
 stats
 ID - number
@@ -17,8 +19,6 @@ Def - number
 Sp. Atk - number
 Sp. Def - number
 Speed - number
-Generation - number
-IsLengardary - bool
 
 pokemon_stats
 pokemon_id - foreign key
