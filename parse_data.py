@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from database_configs.models import Pokemon
 
 def parse_data(db: Session):
-    csv_file = "/Pokemon.csv"
+    csv_file = "./Pokemon.csv"
     
     #Opens the CSV file and reads it
     with open(csv_file, 'r') as file:
