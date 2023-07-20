@@ -23,7 +23,8 @@ def parse_pokemon(db: Session):
             db.add(pokemon)
             
             db.commit()
-            db.close()
+            
+        db.close()
             
 def parse_stats(db: Session):
     csv_file = "./Pokemon.csv"
@@ -48,4 +49,5 @@ def parse_stats(db: Session):
             db.add(pokemonStats)
             
             db.commit()
-            db.close()
+            
+        db.close()
