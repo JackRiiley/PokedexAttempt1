@@ -22,7 +22,7 @@ def parse_pokemon(db: Session):
             
             db.add(pokemon)
             
-            db.commit()
+        db.commit()
             
         db.close()
             
@@ -42,12 +42,10 @@ def parse_stats(db: Session):
             sp_def = int(row["Sp. Def"])
             speed = int(row["Speed"])
             
-            
             #create instance of Pokemon Model and populate data
-            pokemonStats = PokemonStats(total=total, hp=hp, attack=attack, defense=defense, sp_atk=sp_atk, sp_def=sp_def, speed=speed)
+            pokemonStats = PokemonStats(total=total, hp=hp, attack=attack, defense=defense, sp_atk=sp_atk, sp_def=sp_def, speed=speed) 
             
             db.add(pokemonStats)
             
-            db.commit()
-            
+        db.commit()
         db.close()
