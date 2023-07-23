@@ -1,9 +1,12 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends
 from pokemon_logic.PokemonService import PokemonService
 from sqlalchemy.orm import Session
 from database_configs.connection import engine, Base, SessionLocal, get_db
 from database_configs import models
 from parse_data import parse_pokemon_and_stats
+
+from origins import origins
+from fastapi.middleware.cors import CORSMiddleware
 
 
 Base.metadata.create_all(bind=engine)
@@ -11,6 +14,14 @@ Base.metadata.create_all(bind=engine)
 
 #Setting up the FastAPI object
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # @app.on_event("startup")
 # def startup_event():
