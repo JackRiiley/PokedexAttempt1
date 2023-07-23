@@ -1,9 +1,9 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, HTTPException
 from pokemon_logic.PokemonService import PokemonService
 from sqlalchemy.orm import Session
 from database_configs.connection import engine, Base, SessionLocal, get_db
 from database_configs import models
-from parse_data import parse_pokemon, parse_stats
+from parse_data import parse_pokemon_and_stats
 
 
 Base.metadata.create_all(bind=engine)
@@ -15,7 +15,7 @@ app = FastAPI()
 # @app.on_event("startup")
 # def startup_event():
 #     db = SessionLocal()
-#     parse_stats(db)
+#     parse_pokemon_and_stats(db)
 #     db.close()
 
 #Setting up home route for API requests
@@ -32,8 +32,14 @@ def GetAllPokemon(db: Session = Depends(get_db)):
 def GetAllPokemonStats(db: Session = Depends(get_db)):
     return db.query(models.PokemonStats).all()
 
-#Creating an API endpoint for searching for a pokemon
-@app.get("/pokemon/{pokemon_name}")
-def GetPokemonByName(pokemon_name: str):
-    pokemonService = PokemonService()
-    return pokemonService.GetPokemonByName(pokemon_name)
+@app.get("/pokemon-with-stats/")
+def get_pokemon_with_stats(db: Session = Depends(get_db)):
+    pokemon_service = PokemonService(db)
+    results = pokemon_service.get_pokemon_with_stats()
+    return results
+
+@app.get("/pokemon/search/")
+def search_pokemon(name: str, db: Session = Depends(get_db)):
+    pokemon_service = PokemonService(db)
+    results = pokemon_service.search_pokemon(name)
+    return results
