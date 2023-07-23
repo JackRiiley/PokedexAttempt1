@@ -33,9 +33,9 @@ def GetAllPokemonStats(db: Session = Depends(get_db)):
     return db.query(models.PokemonStats).all()
 
 @app.get("/pokemon-with-stats/")
-def get_pokemon_with_stats(db: Session = Depends(get_db)):
+def GetPokemonWithStats(db: Session = Depends(get_db)):
     pokemon_service = PokemonService(db)
-    results = pokemon_service.get_pokemon_with_stats()
+    results = pokemon_service.GetPokemonWithStats()
     return results
 
 @app.get("/pokemon/search/")
