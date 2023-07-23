@@ -7,3 +7,6 @@ class PokemonService:
     
     def GetAllPokemon(self):
         return self.db.query(Pokemon).all()
+    
+    def GetPokemonStats(self):
+        return self.db.query(PokemonStats).all()
