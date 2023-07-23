@@ -12,7 +12,9 @@ class Pokemon(Base):
     generation = Column(Integer)
     legendary = Column(Boolean)
     
-    stats = relationship("PokemonStats", uselist=False, back_populates="pokemon")
+    stats_id = Column(Integer, ForeignKey("pokemon_stats.id"), unique=True)
+    stats = relationship("PokemonStats", back_populates="pokemon")
+    
     
 class PokemonStats(Base):
     __tablename__ = "pokemon_stats"
@@ -24,6 +26,5 @@ class PokemonStats(Base):
     sp_atk = Column(Integer)
     sp_def = Column(Integer)    
     speed = Column(Integer)
-    pokemon_id = Column(Integer, ForeignKey("pokemon.id"))
     
-    pokemon = relationship("Pokemon", back_populates="stats")
+    pokemon = relationship("Pokemon", back_populates="stats", uselist=False)
